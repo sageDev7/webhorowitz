@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sobre mí — Fernando Horowitz Abogado</title>
+<meta name="description" content="Fernando Horowitz es abogado, periodista y docente universitario. Ex Director Nacional del SAIJ. Especialista en divorcios, conflictos familiares y laborales. CABA.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500;600;700;800&family=Tenor+Sans&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+:root{
+  --navy:#0b1724; --navy-dark:#060e18; --navy-mid:#0f2035; --navy-lt:#162848; --navy-card:#111f33;
+  --gold:#c9a961; --gold-lt:#dfc07e; --gold-dk:#a88640;
+  --white:#fff; --off-white:#f4f6f9; --cream:#f7f3ed; --cream-dk:#ede7dc;
+  --text:#1a2236; --muted:#64748b;
+  --border:rgba(201,169,97,.2); --border-lt:rgba(168,134,64,.15);
+  --footer-bg:#040b12;
+  --grad-gold:linear-gradient(135deg,#a88640 0%,#c9a961 60%,#dfc07e 100%);
+  --grad-navy:linear-gradient(135deg,#060e1c 0%,#0b1724 60%,#0f2035 100%);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;color:var(--text);background:var(--white);overflow-x:hidden;}
+a{text-decoration:none;color:inherit;}
+img{display:block;max-width:100%;}
+
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease;}
+.reveal.visible{opacity:1;transform:none;}
+.reveal-left{opacity:0;transform:translateX(-22px);transition:opacity .7s ease,transform .7s ease;}
+.reveal-left.visible{opacity:1;transform:none;}
+.reveal-right{opacity:0;transform:translateX(22px);transition:opacity .7s ease,transform .7s ease;}
+.reveal-right.visible{opacity:1;transform:none;}
+
+.sec-tag{font-size:.67rem;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);}
+.sec-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.9rem,3.5vw,2.9rem);font-weight:600;line-height:1.2;}
+.sec-title em{font-style:italic;color:var(--gold);}
+
+/* ═══ HEADER ═══ */
+#header{
+  position:fixed;top:0;left:0;right:0;z-index:900;
+  padding:0 3%;height:110px;
+  display:flex;align-items:center;justify-content:space-between;
+  background:var(--navy);
+  box-shadow:0 2px 20px rgba(0,0,0,.3);
+  transition:box-shadow .4s;
+}
+.h-logo img{height:138px;}
+.h-nav{display:flex;align-items:center;gap:2.5rem;}
+.h-nav a{
+  font-family:'DM Sans',sans-serif;font-size:.78rem;font-weight:600;
+  letter-spacing:.1em;text-transform:uppercase;
+  color:rgba(255,255,255,.65);transition:color .3s;
+  position:relative;
+}
+.h-nav a:hover{color:#fff;}
+.h-nav a.active{color:#fff;}
+.h-nav a.active::after{content:'';position:absolute;bottom:-5px;left:0;right:0;height:1px;background:var(--gold);}
+.h-cta{
+  display:flex;align-items:center;gap:.5rem;padding:.62rem 1.4rem;
+  border:1px solid rgba(201,169,97,.4);
+  color:var(--gold-lt);font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  transition:background .3s,color .3s;
+}
+.h-cta:hover{background:rgba(201,169,97,.1);color:#fff;}
+
+/* HAMBURGER */
+#menu-toggle{
+  display:none;background:none;border:none;cursor:pointer;
+  width:40px;flex-direction:column;justify-content:center;align-items:center;gap:5px;
+  position:fixed;top:0;right:3%;z-index:10001;height:110px;
+}
+#menu-toggle span{display:block;width:24px;height:1.5px;background:#fff;transition:transform .35s,opacity .35s;transform-origin:center;border-radius:0;}
+#menu-toggle.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg);}
+#menu-toggle.open span:nth-child(2){opacity:0;}
+#menu-toggle.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}
+#mobile-nav{
+  position:fixed;top:0;left:0;right:0;
+  background:var(--navy);border-bottom:2px solid var(--gold);
+  padding:88px 8% 2rem;
+  display:flex;flex-direction:column;align-items:center;z-index:10000;
+  transform:translateY(-110%);transition:transform .38s cubic-bezier(.4,0,.2,1);
+}
+#mobile-nav.open{transform:translateY(0);}
+#mobile-nav .mn-logo{text-align:center;padding-bottom:1.4rem;border-bottom:1px solid var(--border);margin-bottom:.5rem;width:100%;}
+#mobile-nav .mn-logo img{height:138px;display:inline-block;}
+#mobile-nav a{
+  font-size:.82rem;letter-spacing:.15em;text-transform:uppercase;
+  color:rgba(255,255,255,.72);padding:1rem 0;width:100%;text-align:center;
+  border-bottom:1px solid rgba(201,169,97,.1);transition:color .3s;
+}
+#mobile-nav a:hover{color:var(--gold);}
+#mobile-nav .mn-cta{margin-top:1.2rem;border:1px solid var(--border);color:var(--gold);text-align:center;padding:.88rem;width:100%;font-size:.78rem;letter-spacing:.15em;text-transform:uppercase;}
+#overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:9999;}
+#overlay.open{display:block;}
+
+/* ═══ PAGE HERO ═══ */
+#page-hero{
+  background:var(--navy-dark);
+  padding:160px 3% 90px;
+  position:relative;overflow:hidden;
+}
+.page-hero-pat{
+  position:absolute;inset:0;
+  background-image:linear-gradient(rgba(201,169,97,.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(201,169,97,.04) 1px,transparent 1px);
+  background-size:52px 52px;
+}
+.page-hero-gold{position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad-gold);}
+.page-hero-inner{
+  max-width:1200px;margin:0 auto;
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:5rem;align-items:center;
+  position:relative;z-index:1;
+}
+.ph-left{display:flex;flex-direction:column;gap:1.6rem;}
+.ph-eyebrow{
+  font-size:.68rem;font-weight:700;letter-spacing:.28em;text-transform:uppercase;
+  color:var(--gold);display:flex;align-items:center;gap:.6rem;
+}
+.ph-eyebrow::before{content:'';display:block;width:24px;height:1px;background:var(--gold);}
+.ph-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2.6rem,5vw,4.2rem);
+  font-weight:600;line-height:1.08;color:#fff;
+}
+.ph-title em{font-style:italic;display:block;color:var(--gold);font-size:clamp(1.8rem,3.5vw,2.8rem);margin-top:.5rem;font-weight:400;}
+.ph-sub{font-size:.97rem;line-height:1.78;color:rgba(255,255,255,.55);max-width:460px;}
+.ph-matricula{
+  display:flex;align-items:center;gap:.6rem;
+  font-size:.78rem;color:rgba(255,255,255,.38);
+  padding-top:.5rem;border-top:1px solid rgba(201,169,97,.15);
+}
+.ph-matricula i{color:var(--gold);font-size:.8rem;}
+
+/* Foto en el page hero */
+.ph-right{position:relative;}
+.ph-photo-wrap{
+  position:relative;
+  width:100%;aspect-ratio:3/4;overflow:hidden;
+  max-height:520px;
+}
+.ph-photo-wrap img{
+  width:100%;height:100%;object-fit:cover;object-position:center top;
+  filter:brightness(.9) saturate(.9);
+}
+.ph-photo-wrap::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:120px;
+  background:linear-gradient(to top,var(--navy-dark) 0%,transparent 100%);
+}
+.ph-badge{
+  position:absolute;bottom:-1px;left:-1px;
+  background:var(--navy);
+  border:1px solid var(--border);
+  border-bottom:none;border-left:none;
+  padding:1rem 1.4rem;
+  display:flex;flex-direction:column;gap:.2rem;
+}
+.ph-badge-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:2.5rem;font-weight:600;line-height:1;color:#fff;
+}
+.ph-badge-label{font-size:.68rem;color:rgba(255,255,255,.4);letter-spacing:.1em;text-transform:uppercase;}
+
+/* ═══ BIO ═══ */
+#bio{background:var(--white);padding:100px 3%;}
+.bio-inner{
+  max-width:1200px;margin:0 auto;
+  display:grid;grid-template-columns:1fr .85fr;
+  gap:6rem;align-items:start;
+}
+.bio-left{display:flex;flex-direction:column;gap:2rem;}
+.bio-left .sec-title{color:var(--navy);}
+.bio-body{font-size:.97rem;color:var(--muted);line-height:1.88;}
+.bio-body + .bio-body{margin-top:-.8rem;}
+.bio-quote{
+  padding:1.6rem 1.8rem;
+  border-left:3px solid var(--gold);
+  background:var(--off-white);
+  margin:0;
+}
+.bio-quote p{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.2rem;font-style:italic;color:var(--navy);line-height:1.65;
+}
+.bio-right{display:flex;flex-direction:column;gap:1rem;position:sticky;top:130px;}
+.bio-card{
+  padding:1.4rem 1.5rem;
+  background:var(--off-white);border:1px solid var(--border-lt);
+  display:flex;gap:1rem;align-items:flex-start;
+  position:relative;overflow:hidden;
+  transition:box-shadow .3s,transform .3s;
+}
+.bio-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--grad-gold);transform:scaleX(0);transform-origin:left;transition:transform .35s;}
+.bio-card:hover::before{transform:scaleX(1);}
+.bio-card:hover{box-shadow:0 6px 20px rgba(0,0,0,.06);transform:translateY(-2px);}
+.bio-card-icon{width:40px;height:40px;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:var(--navy);color:var(--gold);font-size:.9rem;}
+.bio-card-body strong{display:block;font-size:.88rem;font-weight:700;color:var(--navy);margin-bottom:.2rem;}
+.bio-card-body span{font-size:.8rem;color:var(--muted);line-height:1.5;}
+
+/* ═══ TRAYECTORIA CON FOTO ═══ */
+#trayectoria{
+  background:var(--navy-card);
+  padding:100px 3%;
+  position:relative;overflow:hidden;
+}
+.tray-pat{
+  position:absolute;inset:0;
+  background-image:linear-gradient(rgba(201,169,97,.035) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(201,169,97,.035) 1px,transparent 1px);
+  background-size:52px 52px;
+}
+.tray-inner{
+  max-width:1200px;margin:0 auto;
+  display:grid;grid-template-columns:.9fr 1fr;
+  gap:5rem;align-items:center;
+  position:relative;z-index:1;
+}
+/* Foto fernando3.jpg */
+.tray-photo{
+  position:relative;
+}
+.tray-photo-img{
+  width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center top;
+  filter:brightness(.85) saturate(.85);
+}
+.tray-photo::before{
+  content:'';
+  position:absolute;top:1.5rem;left:1.5rem;right:-1.5rem;bottom:-1.5rem;
+  border:1px solid var(--border);
+  z-index:-1;
+}
+.tray-right{display:flex;flex-direction:column;gap:2rem;}
+.tray-right .sec-title{color:#fff;}
+.tray-body{font-size:.97rem;color:rgba(255,255,255,.55);line-height:1.85;}
+.timeline{display:flex;flex-direction:column;gap:0;}
+.tl-item{
+  display:flex;gap:1.5rem;align-items:flex-start;
+  padding:1.4rem 0;
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+.tl-item:last-child{border-bottom:none;}
+.tl-year{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.1rem;font-weight:600;color:var(--gold);
+  min-width:60px;flex-shrink:0;line-height:1.3;
+}
+.tl-body strong{display:block;font-size:.9rem;font-weight:700;color:#fff;margin-bottom:.25rem;}
+.tl-body span{font-size:.82rem;color:rgba(255,255,255,.45);line-height:1.5;}
+
+/* ═══ ENFOQUE ═══ */
+#enfoque{background:var(--off-white);padding:100px 3%;}
+.enfoque-inner{max-width:1200px;margin:0 auto;}
+.enfoque-head{text-align:center;margin-bottom:4rem;display:flex;flex-direction:column;align-items:center;gap:1rem;}
+.enfoque-head .sec-title{color:var(--navy);}
+.enfoque-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;}
+.enfoque-card{
+  background:var(--white);
+  border:1px solid var(--border-lt);
+  padding:2.4rem 2rem;
+  display:flex;flex-direction:column;gap:1.2rem;
+  transition:box-shadow .3s,transform .3s;
+  position:relative;overflow:hidden;
+}
+.enfoque-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--grad-gold);transform:scaleX(0);transform-origin:left;transition:transform .4s;}
+.enfoque-card:hover::after{transform:scaleX(1);}
+.enfoque-card:hover{box-shadow:0 8px 32px rgba(0,0,0,.07);transform:translateY(-3px);}
+.enfoque-icon{
+  width:48px;height:48px;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--navy);color:var(--gold);font-size:1rem;
+}
+.enfoque-card h3{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:600;color:var(--navy);}
+.enfoque-card p{font-size:.88rem;color:var(--muted);line-height:1.72;}
+
+/* ═══ CTA ═══ */
+#cta-bio{
+  background:var(--navy);padding:100px 3%;
+  text-align:center;position:relative;overflow:hidden;
+}
+.cta-pat{position:absolute;inset:0;background-image:linear-gradient(rgba(201,169,97,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(201,169,97,.05) 1px,transparent 1px);background-size:50px 50px;}
+.cta-vig{position:absolute;inset:0;background:radial-gradient(ellipse at center,transparent 28%,var(--navy) 78%);}
+.cta-inner{max-width:620px;margin:0 auto;position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:1.8rem;}
+.cta-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3rem);font-weight:500;line-height:1.2;color:#fff;}
+.cta-title em{font-style:italic;color:var(--gold);}
+.cta-body{font-size:.97rem;color:rgba(255,255,255,.48);line-height:1.8;}
+.cta-micro{font-size:.8rem;color:rgba(255,255,255,.28);font-style:italic;}
+.btn-gold-outline{
+  display:inline-flex;align-items:center;gap:.5rem;padding:.9rem 2rem;
+  border:1px solid var(--gold);color:var(--gold);
+  font-size:.82rem;font-weight:600;letter-spacing:.05em;
+  transition:background .3s,color .3s;
+}
+.btn-gold-outline:hover{background:var(--gold);color:var(--navy);}
+
+/* ═══ FOOTER ═══ */
+#footer{background:var(--footer-bg);padding:3rem 3%;border-top:1px solid rgba(201,169,97,.1);}
+.footer-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:auto 1fr auto;gap:3rem;align-items:center;}
+.footer-logo img{height:138px;}
+.footer-info{display:flex;flex-direction:column;gap:.4rem;}
+.fi-name{font-size:.9rem;font-weight:600;color:rgba(255,255,255,.75);letter-spacing:.04em;}
+.fi-detail{font-size:.76rem;color:rgba(255,255,255,.3);line-height:1.6;}
+.fi-detail a{color:rgba(255,255,255,.3);transition:color .3s;}
+.fi-detail a:hover{color:var(--gold);}
+.footer-right{display:flex;flex-direction:column;align-items:flex-end;gap:.8rem;}
+.footer-social{display:flex;gap:.6rem;}
+.footer-social a{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:1px solid rgba(201,169,97,.2);color:rgba(255,255,255,.38);font-size:.85rem;transition:border-color .3s,color .3s;}
+.footer-social a:hover{border-color:var(--gold);color:var(--gold);}
+.footer-copy{font-size:.72rem;color:rgba(255,255,255,.18);}
+.footer-copy a{color:rgba(201,169,97,.4);transition:color .3s;}
+.footer-copy a:hover{color:var(--gold);}
+
+/* WA FLOAT */
+#wa-float{position:fixed;bottom:2rem;right:2rem;z-index:800;display:flex;flex-direction:column;align-items:flex-end;gap:.8rem;}
+.wa-btn{width:54px;height:54px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.5rem;box-shadow:0 4px 16px rgba(37,211,102,.4);transition:transform .3s,opacity .3s;animation:wap 2.5s infinite;opacity:0;pointer-events:none;}
+.wa-btn.visible{opacity:1;pointer-events:all;}
+.wa-btn:hover{transform:scale(1.1);animation:none;}
+@keyframes wap{0%,100%{box-shadow:0 4px 16px rgba(37,211,102,.4);}50%{box-shadow:0 4px 28px rgba(37,211,102,.65);}}
+#back-top{width:54px;height:54px;border-radius:50%;background:var(--navy-lt);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:1rem;cursor:pointer;opacity:0;pointer-events:none;transition:opacity .3s,transform .3s;box-shadow:0 4px 16px rgba(0,0,0,.3);}
+#back-top.visible{opacity:1;pointer-events:all;}
+#back-top:hover{transform:translateY(-3px);}
+
+/* ═══ RESPONSIVE ═══ */
+@media(max-width:1024px){
+  .page-hero-inner{grid-template-columns:1fr;gap:3rem;}
+  .ph-right{max-width:420px;margin:0 auto;}
+  .bio-inner{grid-template-columns:1fr;gap:3rem;}
+  .bio-right{position:static;}
+  .tray-inner{grid-template-columns:1fr;gap:3rem;}
+  .tray-photo{max-width:420px;margin:0 auto;}
+  .enfoque-grid{grid-template-columns:repeat(2,1fr);}
+  .footer-inner{grid-template-columns:1fr;text-align:center;}
+  .footer-right{align-items:center;}
+  .footer-info{align-items:center;}
+  .footer-logo img{display:inline-block;}
+}
+@media(max-width:900px){
+  .h-nav,.h-cta{display:none;}
+  #menu-toggle{display:flex;}
+  #header{justify-content:space-between;}
+}
+@media(max-width:768px){
+  #header{justify-content:center;height:90px;}
+  #menu-toggle{height:90px;right:5%;}
+  .h-logo img{height:100px;}
+
+  #page-hero{padding:140px 5% 70px;}
+  .page-hero-inner{text-align:center;}
+  .ph-left{align-items:center;}
+  .ph-eyebrow{justify-content:center;}
+  .ph-sub{margin:0 auto;}
+
+  #bio,#trayectoria,#enfoque,#cta-bio{padding:70px 5%;}
+
+  .bio-inner{text-align:center;}
+  .bio-left{align-items:center;}
+  .bio-quote{text-align:left;}
+  .bio-card{flex-direction:column;align-items:center;text-align:center;}
+  .bio-card:hover{transform:none;}
+
+  .tray-inner{text-align:center;}
+  .tray-right{align-items:center;}
+  .tray-photo::before{display:none;}
+  .tl-item{flex-direction:column;gap:.4rem;align-items:center;text-align:center;}
+
+  .enfoque-grid{grid-template-columns:1fr;}
+  .enfoque-card{align-items:center;text-align:center;}
+
+  .cta-inner{align-items:center;}
+
+  .footer-inner{grid-template-columns:1fr;text-align:center;}
+  .footer-right{align-items:center;}
+  .footer-info{align-items:center;}
+  #footer{padding:2rem 5%;}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header id="header">
+  <div class="h-logo">
+    <a href="./index.html"><img src="./LOGO_FERNANDOHOROWITZABOGADO-03.png" alt="Fernando Horowitz Abogado"></a>
+  </div>
+  <nav class="h-nav">
+    <a href="./index.html">Inicio</a>
+    <a href="./sobre-mi.html" class="active">Sobre mí</a>
+    <a href="./areas.html">Áreas de práctica</a>
+    <a href="./contacto.html">Contacto</a>
+  </nav>
+  <a href="https://wa.me/54911153786828" target="_blank" class="h-cta">
+    <i class="fab fa-whatsapp"></i> Consultar
+  </a>
+</header>
+
+<button id="menu-toggle" aria-label="Menú"><span></span><span></span><span></span></button>
+<div id="overlay"></div>
+<nav id="mobile-nav">
+  <div class="mn-logo"><img src="./LOGO_FERNANDOHOROWITZABOGADO-03.png" alt="Fernando Horowitz"></div>
+  <a href="./index.html">Inicio</a>
+  <a href="./sobre-mi.html">Sobre mí</a>
+  <a href="./areas.html">Áreas de práctica</a>
+  <a href="./contacto.html">Contacto</a>
+  <a href="https://wa.me/54911153786828" target="_blank" class="mn-cta"><i class="fab fa-whatsapp"></i>&nbsp; Consultar</a>
+</nav>
+
+<!-- PAGE HERO -->
+<section id="page-hero">
+  <div class="page-hero-pat"></div>
+  <div class="page-hero-gold"></div>
+  <div class="page-hero-inner">
+    <div class="ph-left reveal-left">
+      <div class="ph-eyebrow">Sobre mí</div>
+      <h1 class="ph-title">
+        Fernando Horowitz
+        <em>Abogado, periodista y docente universitario</em>
+      </h1>
+      <p class="ph-sub">30 años de trayectoria en conflictos complejos, divorcios, violencia familiar y situaciones que requieren claridad, estrategia y acompañamiento profesional.</p>
+      <div class="ph-matricula"><i class="fas fa-id-card"></i> T°45 F°941 CPACF · Av. Libertador 5579, CABA</div>
+    </div>
+    <div class="ph-right reveal-right">
+      <div class="ph-photo-wrap">
+        <img src="./fernando4.png" alt="Dr. Fernando Horowitz">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BIO -->
+<section id="bio">
+  <div class="bio-inner">
+    <div class="bio-left reveal-left">
+      <span class="sec-tag">Biografía</span>
+      <h2 class="sec-title">Una trayectoria construida sobre <em>experiencia real</em></h2>
+      <p class="bio-body">Fernando Horowitz es abogado, periodista y docente universitario. Fue Director Nacional del Sistema Argentino de Información Jurídica (SAIJ) del Ministerio de Justicia de la Nación. Se especializa en conflictos complejos, divorcios, violencia, hostigamiento, sucesiones, situaciones familiares sensibles y despidos.</p>
+      <p class="bio-body">Destraba situaciones complejas con experiencia, negociación y un enfoque práctico. Acompaña a personas que atraviesan conflictos familiares, violencia, hostigamiento, despidos y momentos difíciles, donde las decisiones jurídicas impactan en la tranquilidad, la familia y el futuro.</p>
+      <div class="bio-quote">
+        <p>"Trabajo en situaciones que requieren claridad, respaldo profesional y capacidad para ordenar conflictos sensibles. Eso es lo que hago desde hace 30 años."</p>
+      </div>
+      <p class="bio-body">Su formación como periodista le permite comunicar con claridad cada etapa del proceso legal, en un lenguaje accesible para las personas que lo necesitan. Su rol como docente universitario lo mantiene en permanente actualización y contacto con las nuevas generaciones del derecho.</p>
+    </div>
+    <div class="bio-right reveal-right">
+      <div class="bio-card">
+        <div class="bio-card-icon"><i class="fas fa-landmark"></i></div>
+        <div class="bio-card-body">
+          <strong>Ex Director Nacional del SAIJ</strong>
+          <span>Sistema Argentino de Información Jurídica — Ministerio de Justicia de la Nación</span>
+        </div>
+      </div>
+      <div class="bio-card">
+        <div class="bio-card-icon"><i class="fas fa-gavel"></i></div>
+        <div class="bio-card-body">
+          <strong>Abogado matriculado</strong>
+          <span>T°45 F°941 CPACF · 30 años de ejercicio profesional en Buenos Aires</span>
+        </div>
+      </div>
+      <div class="bio-card">
+        <div class="bio-card-icon"><i class="fas fa-graduation-cap"></i></div>
+        <div class="bio-card-body">
+          <strong>Docente universitario</strong>
+          <span>Formación académica continua e integración del derecho como herramienta social</span>
+        </div>
+      </div>
+      <div class="bio-card">
+        <div class="bio-card-icon"><i class="fas fa-pen-nib"></i></div>
+        <div class="bio-card-body">
+          <strong>Periodista</strong>
+          <span>La comunicación clara como parte esencial del acompañamiento jurídico profesional</span>
+        </div>
+      </div>
+      <div class="bio-card">
+        <div class="bio-card-icon"><i class="fas fa-map-marker-alt"></i></div>
+        <div class="bio-card-body">
+          <strong>CABA y Provincia de Buenos Aires</strong>
+          <span>Av. Libertador 5579, Ciudad Autónoma de Buenos Aires · Atención presencial y online</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRAYECTORIA CON FOTO -->
+<section id="trayectoria">
+  <div class="tray-pat"></div>
+  <div class="tray-inner">
+    <div class="tray-photo reveal-left">
+      <img src="./fernando3.jpg" alt="Dr. Fernando Horowitz" class="tray-photo-img">
+    </div>
+    <div class="tray-right reveal-right">
+      <span class="sec-tag">Trayectoria</span>
+      <h2 class="sec-title">30 años de <em>experiencia</em> en conflictos complejos</h2>
+      <p class="tray-body">Una carrera construida en los casos más difíciles, con un enfoque que combina rigor jurídico, comunicación efectiva y acompañamiento humano.</p>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-year">1991</div>
+          <div class="tl-body">
+            <strong>Inicio del ejercicio profesional</strong>
+            <span>Comienzo de la trayectoria como abogado en Buenos Aires, especializándose en derecho de familia y conflictos complejos.</span>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">SAIJ</div>
+          <div class="tl-body">
+            <strong>Director Nacional del SAIJ</strong>
+            <span>Ministerio de Justicia de la Nación. Sistema Argentino de Información Jurídica.</span>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">Docencia</div>
+          <div class="tl-body">
+            <strong>Docente universitario</strong>
+            <span>Actividad académica continua, integrando la práctica profesional con la formación de nuevas generaciones de abogados.</span>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">Hoy</div>
+          <div class="tl-body">
+            <strong>Estudio propio en CABA</strong>
+            <span>Av. Libertador 5579. Atención directa y personalizada en divorcios, violencia, sucesiones y conflictos laborales complejos.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ENFOQUE -->
+<section id="enfoque">
+  <div class="enfoque-inner">
+    <div class="enfoque-head reveal">
+      <span class="sec-tag">Mi enfoque</span>
+      <h2 class="sec-title">Cómo trabajo en cada <em>caso</em></h2>
+    </div>
+    <div class="enfoque-grid">
+      <div class="enfoque-card reveal">
+        <div class="enfoque-icon"><i class="fas fa-search"></i></div>
+        <h3>Claridad antes de actuar</h3>
+        <p>Cada situación requiere entender correctamente el problema antes de tomar cualquier decisión. Analizo cada caso en profundidad para definir el camino más efectivo.</p>
+      </div>
+      <div class="enfoque-card reveal">
+        <div class="enfoque-icon"><i class="fas fa-handshake"></i></div>
+        <h3>Acompañamiento real</h3>
+        <p>No solo gestiono el expediente. Acompaño a la persona en cada etapa del proceso, con comunicación directa y explicaciones claras en cada momento.</p>
+      </div>
+      <div class="enfoque-card reveal">
+        <div class="enfoque-icon"><i class="fas fa-chess"></i></div>
+        <h3>Estrategia personalizada</h3>
+        <p>Cada caso es diferente. La estrategia se define en función de la situación concreta, los objetivos de la persona y las posibilidades reales del proceso.</p>
+      </div>
+      <div class="enfoque-card reveal">
+        <div class="enfoque-icon"><i class="fas fa-lock"></i></div>
+        <h3>Confidencialidad total</h3>
+        <p>Cada consulta y cada caso son tratados con absoluta reserva y discreción. La privacidad de las personas y sus familias es una prioridad irrenunciable.</p>
+      </div>
+      <div class="enfoque-card reveal">
+        <div class="enfoque-icon"><i class="fas fa-bolt"></i></div>
+        <h3>Respuesta ágil</h3>
+        <p>En situaciones de alta conflictividad, el tiempo es un factor crítico. Actúo con rapidez para evitar que los problemas se agraven innecesariamente.</p>
+      </div>
+      <div class="enfoque-card reveal">
+        <div class="enfoque-icon"><i class="fas fa-comments"></i></div>
+        <h3>Comunicación directa</h3>
+        <p>Explico cada paso del proceso en lenguaje claro, sin tecnicismos. Mi formación periodística me permite traducir el derecho en términos comprensibles.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta-bio">
+  <div class="cta-pat"></div>
+  <div class="cta-vig"></div>
+  <div class="cta-inner reveal">
+    <span class="sec-tag">Comenzá hoy</span>
+    <h2 class="cta-title">¿Necesitás asesoramiento <span style="color:var(--gold);">profesional</span>?</h2>
+    <p class="cta-body">Consultá tu situación de manera confidencial y sin compromiso. Te respondo personalmente a la brevedad.</p>
+    <p class="cta-micro">Primera orientación gratuita.</p>
+    <a href="https://wa.me/54911153786828" target="_blank" class="btn-gold-outline">
+      <i class="fab fa-whatsapp"></i> Consultar ahora
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="footer">
+  <div class="footer-inner">
+    <div class="footer-logo"><img src="./LOGO_FERNANDOHOROWITZABOGADO-03.png" alt="Fernando Horowitz Abogado"></div>
+    <div class="footer-info">
+      <div class="fi-name">Fernando Horowitz — Abogado — T°45 F°941 CPACF</div>
+      <div class="fi-detail">Av. Libertador 5579 — Ciudad Autónoma de Buenos Aires</div>
+      <div class="fi-detail"><a href="https://wa.me/54911153786828">WhatsApp 011 15 3786-8828</a></div>
+      <div class="fi-detail" style="margin-top:.3rem;">© 2026 Fernando Horowitz Abogado · Todos los derechos reservados</div>
+      <div class="fi-detail">Desarrollado por <a href="https://instagram.com/sageedev/" target="_blank">@sageeDev</a></div>
+    </div>
+    <div class="footer-right">
+      <div class="footer-social">
+        <a href="https://www.instagram.com/horowitzfernando/" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.linkedin.com/in/fernandohorowitz/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://wa.me/54911153786828" target="_blank"><i class="fab fa-whatsapp"></i></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div id="wa-float">
+  <div id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fas fa-chevron-up"></i></div>
+  <a href="https://wa.me/54911153786828" target="_blank" class="wa-btn"><i class="fab fa-whatsapp"></i></a>
+</div>
+
+<script>
+const backTop=document.getElementById('back-top');
+window.addEventListener('scroll',()=>{
+  const s=window.scrollY>400;
+  backTop.classList.toggle('visible',s);
+  document.querySelector('.wa-btn').classList.toggle('visible',s);
+});
+const toggle=document.getElementById('menu-toggle'),mn=document.getElementById('mobile-nav'),ov=document.getElementById('overlay');
+function closeMenu(){toggle.classList.remove('open');mn.classList.remove('open');ov.classList.remove('open');}
+toggle.addEventListener('click',()=>{const o=toggle.classList.toggle('open');mn.classList.toggle('open',o);ov.classList.toggle('open',o);});
+ov.addEventListener('click',closeMenu);
+mn.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeMenu));
+const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('visible');obs.unobserve(x.target);}});},{threshold:.12});
+document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
