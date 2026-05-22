@@ -99,44 +99,41 @@ img{display:block;max-width:100%;}
 #hero{
   min-height:100vh;background:var(--navy-dark);
   position:relative;overflow:hidden;
-  display:flex;flex-direction:column;justify-content:flex-end;
+  display:flex;flex-direction:column;justify-content:center;
 }
 .hero-gold-top{position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad-gold);z-index:3;}
-/* Foto de fondo completo — diferente a la landing donde ocupa solo la derecha */
+/* Foto ocupando la mitad derecha — igual que la landing */
 .hero-photo{
-  position:absolute;inset:0;
+  position:absolute;right:0;top:0;bottom:0;
+  width:60%;
   background-image:url('./fernando2.png');
-  background-size:cover;background-position:34% 35%;
-  filter:brightness(.55) saturate(.85);
+  background-size:cover;background-position:center top;
+  filter:brightness(.82);
 }
-/* Overlay denso desde abajo — el texto vive en la parte inferior */
+/* Fade horizontal de izquierda a derecha como en la landing */
 .hero-fade{
   position:absolute;inset:0;
-  background:linear-gradient(
-    to top,
+  background:linear-gradient(90deg,
     #060e18 0%,
-    rgba(6,14,24,.96) 22%,
-    rgba(6,14,24,.7) 45%,
-    rgba(6,14,24,.3) 65%,
-    rgba(6,14,24,.1) 85%,
-    transparent 100%
+    #060e18 28%,
+    rgba(6,14,24,.97) 34%,
+    rgba(6,14,24,.88) 40%,
+    rgba(6,14,24,.55) 52%,
+    rgba(6,14,24,.15) 65%,
+    transparent 78%
   );
 }
-/* Franja lateral izquierda sutil para dar profundidad */
-.hero-fade-side{
-  position:absolute;inset:0;
-  background:linear-gradient(90deg,rgba(6,14,24,.5) 0%,transparent 40%);
-}
-.hero-fade-bottom{display:none;}
-/* Contenido centrado abajo */
+.hero-fade-side{display:none;}
+.hero-fade-bottom{position:absolute;bottom:0;left:0;right:0;height:80px;background:linear-gradient(to top,var(--navy-dark) 0%,transparent 100%);z-index:1;}
+/* Contenido izquierda — alineado verticalmente al centro */
 .hero-content{
   position:relative;z-index:2;
   width:100%;
-  padding:0 6% 90px;
+  padding:130px 6% 80px;
   display:grid;
   grid-template-columns:1fr auto;
   gap:3rem;
-  align-items:flex-end;
+  align-items:center;
 }
 .hero-content-left{display:flex;flex-direction:column;gap:1.4rem;max-width:640px;}
 .hero-eyebrow{
@@ -153,7 +150,9 @@ img{display:block;max-width:100%;}
 /* Panel derecho con credenciales — columna vertical */
 .hero-content-right{
   display:flex;flex-direction:column;gap:.7rem;
-  padding-bottom:.3rem;min-width:230px;
+  min-width:230px;
+  align-self:flex-end;
+  padding-bottom:.3rem;
 }
 .hero-cred-v{
   display:flex;align-items:flex-start;gap:.7rem;
@@ -388,15 +387,15 @@ img{display:block;max-width:100%;}
   #header.scrolled{height:90px;}
   #menu-toggle{display:flex;right:5%;}
 
-  #hero{min-height:100svh;}
+  #hero{min-height:100svh;justify-content:flex-end;}
+  .hero-photo{width:100%;filter:brightness(.7);background-position:60% top;}
+  .hero-fade{background:linear-gradient(to top,#060e18 0%,rgba(6,14,24,.96) 28%,rgba(6,14,24,.45) 55%,rgba(6,14,24,.1) 80%,transparent 100%);}
+  .hero-fade-bottom{display:none;}
   .hero-content{
     position:relative;
     grid-template-columns:1fr;gap:1.2rem;
-    padding:110px 5% 50px;text-align:center;width:100%;
+    padding:0 5% 50px;text-align:center;width:100%;
   }
-  .hero-photo{filter:brightness(.45);}
-  .hero-fade{background:linear-gradient(to top,#060e18 0%,rgba(6,14,24,.96) 28%,rgba(6,14,24,.45) 55%,rgba(6,14,24,.1) 80%,transparent 100%);}
-  .hero-fade-side{display:none;}
   .hero-content-left{align-items:center;width:100%;}
   .hero-eyebrow{justify-content:center;font-size:.6rem;letter-spacing:.18em;white-space:normal;text-align:center;}
   .hero-eyebrow::before{display:none;}
@@ -436,7 +435,7 @@ img{display:block;max-width:100%;}
 }
 @media(max-width:400px){
   .hero-eyebrow{font-size:.52rem;letter-spacing:.12em;}
-  .hero-photo{background-position:34% 35%;}
+  .hero-photo{background-position:60% top;}
   #hero{min-height:120svh;}
   .hero-content{padding:52svh 5% 30px;}
 }
@@ -482,10 +481,10 @@ img{display:block;max-width:100%;}
     <div class="hero-content-left">
       <div class="hero-eyebrow">Abogado — Periodista — Docente Universitario</div>
       <h1 class="hero-h1">
-        Resolvemos conflictos complejos
-        <span class="gold">Con claridad y estrategia</span>
+        Resuelvo conflictos complejos
+        <span class="gold">claridad y estrategia</span>
       </h1>
-      <p class="hero-sub">Estrategia, experiencia y contención en casos difíciles. Asesoramiento legal y acompañamiento profesional en divorcios, violencia, hostigamiento, sucesiones y conflictos laborales.</p>
+      <p class="hero-sub">Conocimientos, experiencia y contención en casos difíciles. Asesoramiento legal y acompañamiento profesional en divorcios, violencia, hostigamiento, sucesiones y conflictos laborales.</p>
       <div class="hero-btns">
         <a href="https://wa.me/54911153786828" target="_blank" class="btn-gold-outline">
           <i class="fab fa-whatsapp"></i> Empezá a resolverlo
@@ -518,7 +517,7 @@ img{display:block;max-width:100%;}
 <section id="quien">
   <div class="quien-inner">
     <div class="quien-left reveal-left">
-      <span class="sec-tag">Sobre mí</span>
+      <span class="sec-tag">El estudio</span>
       <h2 class="sec-title">Abogado, periodista y <em>docente universitario</em></h2>
       <p class="quien-body">Destrabo situaciones complejas con experiencia, negociación y un enfoque práctico. Después de desempeñarme como Director Nacional del Sistema Argentino de Información Jurídica (SAIJ) del Ministerio de Justicia de la Nación, acompaño a personas que atraviesan conflictos familiares, violencia, hostigamiento, despidos y momentos difíciles.</p>
       <p class="quien-body">Trabajo en situaciones que requieren claridad, respaldo profesional y capacidad para ordenar conflictos sensibles donde las decisiones jurídicas impactan en la tranquilidad, la familia y el futuro de las personas.</p>
